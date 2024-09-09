@@ -6,10 +6,10 @@ import com.crio.api.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/usuario")
@@ -35,5 +35,18 @@ public class UsuarioController {
         Usuario newUsuario =
                 this.usuarioService.createUsuario(usuarioRequestDTO);
         return ResponseEntity.ok(newUsuario);
+    }
+    // Retornar todos os usuarios
+    @GetMapping
+    public ResponseEntity<List<Usuario>> getAllUsers(){
+        List<Usuario> usuarios = this.usuarioService.getAllusers();
+    // Retornar a lista com todos os usuarios
+        return ResponseEntity.ok(usuarios);
+    }
+    // Retornar usuario pelo Id
+    @GetMapping("/{id}") // /api/usuario/12o13y23y-3123-rewre321
+    public ResponseEntity<Usuario> getUserById(@PathVariable("id") UUID id){
+        Usuario usuario = this.usuarioService.getUserById();
+        return ResponseEntity.ok(usuario);
     }
 }
