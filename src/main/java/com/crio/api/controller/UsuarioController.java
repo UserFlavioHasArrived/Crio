@@ -4,6 +4,7 @@ import com.crio.api.domain.usuario.Usuario;
 import com.crio.api.domain.usuario.UsuarioRequestDTO;
 import com.crio.api.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -46,7 +47,14 @@ public class UsuarioController {
     // Retornar usuario pelo Id
     @GetMapping("/{id}") // /api/usuario/12o13y23y-3123-rewre321
     public ResponseEntity<Usuario> getUserById(@PathVariable("id") UUID id){
-        Usuario usuario = this.usuarioService.getUserById();
+        Usuario usuario = this.usuarioService.getUserById(id);
         return ResponseEntity.ok(usuario);
+    }
+    //Atualizar os dados
+    @PutMapping("/{id}")
+    public ResponseEntity<Usuario> updateUser(@PathVariable("id")UUID id, UsuarioRequestDTO usuarioRequestDTO){
+        Usuario updatedUsuario = this.usuarioService.updateUser(id,usuarioRequestDTO);
+        return ResponseEntity.ok(updatedUsuario);
+
     }
 }
