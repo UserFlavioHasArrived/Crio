@@ -26,4 +26,5 @@ public class Usuario {
     private int tipo;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+
 }

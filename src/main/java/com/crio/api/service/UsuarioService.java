@@ -16,24 +16,25 @@ public class UsuarioService {
     private UsuarioRepository usuarioRepository;
 
     public Usuario createUsuario(UsuarioRequestDTO data){
-       // Cria os dados vazios
+        //cria um usuario vazio
         Usuario newUsuario = new Usuario();
-        //Preenche os dados do usuario
+        //preenche os dados do usuario
         newUsuario.setNomeCompleto(data.nomeCompleto());
         newUsuario.setEmail(data.email());
         newUsuario.setSenha(data.senha());
         newUsuario.setTipo(data.tipo());
         usuarioRepository.save(newUsuario);
         return newUsuario;
-
     }
 
-    public List<Usuario> getAllusers() {
+
+    public List<Usuario> getAllUsers() {
         return usuarioRepository.findAll();
     }
 
     public Usuario getUserById(UUID id) {
-        return usuarioRepository.findById(id).orElseThrow(() -> new RuntimeException("Usuário não encontrado!"));
+        return usuarioRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado."));
     }
 
     public Usuario updateUser(UUID id, UsuarioRequestDTO usuarioRequestDTO) {
@@ -44,11 +45,9 @@ public class UsuarioService {
         updateUsuario.setTipo(usuarioRequestDTO.tipo());
         updateUsuario.setUpdatedAt(LocalDateTime.now());
 
-
         return usuarioRepository.save(updateUsuario);
     }
-
-    public void deleteUser (UUID id){
+    public void deleteUser(UUID id){
         Usuario usuario = getUserById(id);
         usuarioRepository.delete(usuario);
     }
