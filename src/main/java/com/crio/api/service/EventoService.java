@@ -25,7 +25,11 @@ public class EventoService {
         newEvento.setFim(data.fim());
         newEvento.setLocal(data.local());
         newEvento.setPrivado(data.privado());
+        newEvento.setLinkEvento(data.linkEvento());
+        newEvento.setComoChegar(data.comoChegar());
+        newEvento.setLinkForms(data.linkForms());
         newEvento.setUsuario(data.usuario());
+        newEvento.setEndereco(data.endereco());
         eventoRepository.save(newEvento);
         return newEvento;
     }
@@ -48,7 +52,11 @@ public class EventoService {
         updateEvento.setFim(eventoRequestDTO.fim());
         updateEvento.setLocal(eventoRequestDTO.local());
         updateEvento.setPrivado(eventoRequestDTO.privado());
+        updateEvento.setLinkEvento(eventoRequestDTO.linkEvento());
+        updateEvento.setComoChegar(eventoRequestDTO.comoChegar());
+        updateEvento.setLinkForms(eventoRequestDTO.linkForms());
         updateEvento.setUsuario(eventoRequestDTO.usuario());
+        updateEvento.setEndereco(eventoRequestDTO.endereco());
         return eventoRepository.save(updateEvento);
     }
     public void deleteEvento(UUID id){

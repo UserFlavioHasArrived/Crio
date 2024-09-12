@@ -1,5 +1,6 @@
 package com.crio.api.controller;
 
+import com.crio.api.domain.endereco.Endereco;
 import com.crio.api.domain.evento.Evento;
 import com.crio.api.domain.evento.EventoRequestDTO;
 import com.crio.api.domain.usuario.Usuario;
@@ -27,12 +28,16 @@ public class EventoController {
             @RequestParam("descricao") String descricao,
             @RequestParam("inicio") LocalDateTime inicio,
             @RequestParam("fim") LocalDateTime fim,
-            @RequestParam("local") String local,
+            @RequestParam("local")String local,
             @RequestParam("privado") Boolean privado,
-            @RequestParam("usuario") Usuario usuario
+            @RequestParam("linkEvento") String linkEvento,
+            @RequestParam("comoChegar") String comoChegar,
+            @RequestParam("linkForms") String linkForms,
+            @RequestParam("usuario") Usuario usuario,
+            @RequestParam("endereco") Endereco endereco
             ){
         EventoRequestDTO eventoRequestDTO =
-                new EventoRequestDTO(titulo,descricao,inicio,fim,local,privado,usuario);
+                new EventoRequestDTO(titulo,descricao,inicio,fim,local,privado,linkEvento,comoChegar,linkForms,usuario,endereco);
         Evento newEvento =
                 this.eventoService.createEvento(eventoRequestDTO);
         return ResponseEntity.ok(newEvento);
