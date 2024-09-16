@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -15,9 +16,14 @@ import java.util.UUID;
 @RequestMapping("/api/usuario")
 public class UsuarioController {
     //criar um objeto service
-    @Autowired
-    private UsuarioService usuarioService;
+        @Autowired
+        private UsuarioService usuarioService;
+
+
     //CRUD
+
+
+
     @PostMapping(consumes = "multipart/form-data")
     public ResponseEntity<Usuario> create(
             //mapeamento dos campos

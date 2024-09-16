@@ -20,6 +20,39 @@ public class EventoController {
     //criar um objeto service
     @Autowired
     private EventoService eventoService;
+    //Querys
+    @GetMapping("/usuario/{usuarioId}")
+    public ResponseEntity<List<Evento>> findByUsuarioId(@PathVariable
+                                                        UUID usuarioId){
+        List<Evento> eventos = eventoService.findByUsuarioId(usuarioId);
+        return ResponseEntity.ok(eventos);
+    }
+    //buscar evento por intervalo de data
+    @PostMapping("/intervalo")
+    public ResponseEntity<List<Evento>> findByIntervaloData(
+            @RequestBody IntervaloDataDTO intervaloDataDTO){
+        List<Evento> eventos = eventoService.findByIntervaloData(
+                intervaloDataDTO);
+        return ResponseEntity.ok(eventos);
+    }
+    //buscar eventos por local
+    @GetMapping("/local/{local}")
+    public ResponseEntity<List<Evento>> findByLocal(
+                @PathVariable String local){
+        List<Evento> eventos = eventoService.findByLocal(local);
+        return ResponseEntity.ok(eventos);
+    }
+    @PostMapping("/local-intervalo")
+    public ResponseEntity<List<Evento>> findByLocalAndIntervaloData(
+            @RequestBody LocalIntervaloDTO localIntervaloDTO){
+        List<Evento> eventos = eventoService.findByLocalAndIntervaloData(
+                localIntervaloDTO.getLocal(),
+                localIntervaloDTO.getInicio(),
+                localIntervaloDTO.getFim() );
+        return ResponseEntity.ok(eventos);
+    }
+
+
     //CRUD
     @PostMapping(consumes = "multipart/form-data")
     public ResponseEntity<Evento> create(

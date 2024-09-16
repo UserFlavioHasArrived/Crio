@@ -15,6 +15,7 @@ public class UsuarioService {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
+
     public Usuario createUsuario(UsuarioRequestDTO data){
         //cria um usuario vazio
         Usuario newUsuario = new Usuario();
