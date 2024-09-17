@@ -22,7 +22,5 @@ public interface EventoRepository extends
     //consulta por local e intervalo de data
     @Query("SELECT e FROM Evento e WHERE e.local = :local AND "+
     "e.inicio BETWEEN :inicio AND :fim")
-    List<Evento> findByLocalAndIntervaloData(String local,
-                                             LocalDateTime inicio,
-                                             LocalDateTime fim);
+    List<Evento> findByLocalAndIntervaloData(String local,LocalDateTime inicio,LocalDateTime fim);
 }

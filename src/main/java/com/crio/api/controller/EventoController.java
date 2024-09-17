@@ -3,6 +3,8 @@ package com.crio.api.controller;
 import com.crio.api.domain.endereco.Endereco;
 import com.crio.api.domain.evento.Evento;
 import com.crio.api.domain.evento.EventoRequestDTO;
+import com.crio.api.domain.evento.IntervaloDataDTO;
+import com.crio.api.domain.evento.LocalIntervaloDTO;
 import com.crio.api.domain.usuario.Usuario;
 import com.crio.api.service.EventoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,9 +48,9 @@ public class EventoController {
     public ResponseEntity<List<Evento>> findByLocalAndIntervaloData(
             @RequestBody LocalIntervaloDTO localIntervaloDTO){
         List<Evento> eventos = eventoService.findByLocalAndIntervaloData(
-                localIntervaloDTO.getLocal(),
-                localIntervaloDTO.getInicio(),
-                localIntervaloDTO.getFim() );
+                localIntervaloDTO.local(),
+                localIntervaloDTO.inicio(),
+                localIntervaloDTO.fim());
         return ResponseEntity.ok(eventos);
     }
 
