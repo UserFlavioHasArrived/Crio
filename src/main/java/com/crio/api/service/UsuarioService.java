@@ -1,3 +1,4 @@
+
 package com.crio.api.service;
 
 import com.crio.api.domain.usuario.Usuario;
@@ -55,13 +56,7 @@ public class UsuarioService {
     }
 
     public Optional<Usuario> findByEmail(String email) {
-        Optional <Usuario> usuario = usuarioRepository.findByEmail(email);
-        return usuario;
-
-    }
-
-    public Optional<Usuario> findByTipo(int tipo) {
-        Optional <Usuario> usuario = usuarioRepository.findByEmail(tipo);
+        Optional<Usuario> usuario = usuarioRepository.findByEmail(email);
         return usuario;
     }
 }
